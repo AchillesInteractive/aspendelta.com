@@ -1,0 +1,7 @@
+C:\Users\kevin\source\repos\AspenDelta.com\AspenDelta.com\obj\Release\net6.0\PubTmp\Out\AspenDelta.com.exe
+C:\Users\kevin\source\repos\AspenDelta.com\AspenDelta.com\obj\Release\net6.0\PubTmp\Out\appsettings.Development.json
+C:\Users\kevin\source\repos\AspenDelta.com\AspenDelta.com\obj\Release\net6.0\PubTmp\Out\appsettings.json
+C:\Users\kevin\source\repos\AspenDelta.com\AspenDelta.com\obj\Release\net6.0\PubTmp\Out\AspenDelta.com.dll
+C:\Users\kevin\source\repos\AspenDelta.com\AspenDelta.com\obj\Release\net6.0\PubTmp\Out\AspenDelta.com.deps.json
+C:\Users\kevin\source\repos\AspenDelta.com\AspenDelta.com\obj\Release\net6.0\PubTmp\Out\AspenDelta.com.runtimeconfig.json
+C:\Users\kevin\source\repos\AspenDelta.com\AspenDelta.com\obj\Release\net6.0\PubTmp\Out\AspenDelta.com.pdb
