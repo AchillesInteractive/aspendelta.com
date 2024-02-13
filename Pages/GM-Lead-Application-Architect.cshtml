@@ -1,0 +1,102 @@
+﻿@page
+@model AspenDelta.com.Pages.GM_Lead_Application_ArchitectModel
+@{
+}
+<div class="text-center">
+    <h1 class="display-4">Thank You</h1>
+    <h2>Good afternoon, Sindy</h2>
+    <p>Thank you for taking the time to speak with me today.</p>
+    <p>I spun up an Azure VM, configured IIS on it & built out this web page to publish to it. I used Visual Studio to create the site and set up a connected service for deployment. Below, I created a simple JS mini-app to query the National Weather Service API. With it you can check the forecast for the GM Financial office locations.</p>
+     <p>Though, I have not used Azure for cloud setup in a couple years. I wanted to assure you that I have the expertise to manage Azure cloud accounts and features. With my level of experience, I can easily adapt to technological changes, and adapt to various environments relatively quickly.
+    </p>
+    <p>Thank you,</p>
+    <p>
+        <strong>Kevin Ulrich</strong><br />
+        <a href="mailto:kevin.ulrich@achillesinteractive.com">kevin.ulrich@achillesinteractive.com</a><br>
+        <a href="tel:+1-214-280-9185">214-280-9185</a></p>
+    <div class="weather">
+    <p><a href="https://www.gmfinancial.com/" target="_blank"><img src="~/images/gmf-logo.png" srcset="~/images/gmf-logo.svg" alt="GM Financial"></a></p>
+    <p>The upcoming weather forecast at GM Financial Offices in
+    <select id="weatherLocation">
+        <option value="TXZ118">Arlington, Texas
+            (Credit Center)</option>
+        <option value="GAZ033">Atlanta, Georgia</option>
+        <option value="MAZ015">Boston, Massachusetts</option>
+        <option value="OHZ077">Cincinnati, Ohio</option>
+        <option value="COZ040">Denver, Colorado</option>
+        <option value="MIZ076">Detroit, Michigan</option>
+         <option value="TXZ119" selected="selected">Las Colinas, Texas</option>
+        <option value="WIZ066">Milwaukee, Wisconsin</option>
+        <option value="ILZ013" >Naperville, Illinois</option>
+        <option value="CAZ554">Orange, California</option>
+        <option value="FLZ045">Orlando, Florida</option>
+        <option value="NJZ104">Paramus, New Jersey</option>
+        <option value="PAZ071">Philadelphia, Pennsylvania</option>
+        <option value="NCZ041">Raleigh, North Carolina</option>
+        <option value="TXZ205">
+            San Antonio, Texas
+            (Credit Center)
+        </option>
+        <option value="WAZ558">Seattle, Washington</option>
+        <option value="TXZ227">Sugar Land, Texas</option>
+
+    </select>
+    </p>
+    <p>
+     
+        <div id="weather"></div>
+    <p>Weather data provided by the <a href="https://www.weather.gov/">National Weather Service</a> API</p>
+</div>
+</div>
+<script>
+
+
+    var getJSON = function (url, callback) {
+        var xhr = new XMLHttpRequest();
+        xhr.open('GET', url, true);
+        xhr.responseType = 'json';
+        xhr.onload = function () {
+            var status = xhr.status;
+            if (status === 200) {
+                callback(null, xhr.response);
+            } else {
+                callback(status, xhr.response);
+            }
+        };
+        xhr.send();
+    };
+
+    var weatherLocation = document.getElementById("weatherLocation");
+
+    weatherLocation.onchange = function (e) {
+        var zone = this.value;
+        console.log(zone);
+        var url = "https://api.weather.gov/zones/public/" + zone + "/forecast";
+        getWeather(url);
+
+
+    };
+    //var url = "https://api.weather.gov/points/32.8669604,-96.939784";
+    var zone = "TXZ119";
+    var url = "https://api.weather.gov/zones/public/" +zone+ "/forecast";
+   getWeather(url);
+    function getWeather(url){
+        getJSON(url,
+            function (err, data) {
+                if (err !== null) {
+                    alert('Something went wrong: ' + err);
+                } else {
+    
+                   var html = "";
+                    data.properties.periods.forEach(element => {
+                        html += '<li><div><strong>' + element.name + '</strong></div><div>' + element.detailedForecast + '</div></li>';
+                        //console.log(name);
+                        //console.log(detailedForecast);
+                    });
+                    //console.log(html);
+                    document.getElementById("weather").innerHTML = '<ul>' + html + '</ul>';
+                }
+            });
+        }
+
+</script>
